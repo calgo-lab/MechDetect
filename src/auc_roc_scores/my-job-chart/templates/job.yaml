@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "my-job-chart.fullname" . }}
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: error-mechanisms-experiments
+          image: "{{ .Values.image.repositoryBase }}{{ .Values.image.repositorySuffix }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            - name: OMP_NUM_THREADS
+              value: "{{ .Values.numWorkers }}"
+          args:
+            - "{{ .Values.numWorkers }}"
+            - "{{ .Values.randomSeed }}"
+            - "{{ .Values.experimentDirectory }}"
+            - "{{ .Values.datasetID }}"
+            - "{{ .Values.errorRate }}"
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end}}
+          volumeMounts:
+            - mountPath: "/results"
+              name: experiments
+            - mountPath: "/datasets"
+              name: datasets
+      volumes:
+        - name: experiments
+          persistentVolumeClaim:
+            claimName: experiments-pvc
+        - name: datasets
+          persistentVolumeClaim:
+            claimName: dataset-pvc
+      imagePullSecrets:
+        - name: private-registry-auth
+

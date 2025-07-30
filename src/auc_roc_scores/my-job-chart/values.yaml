@@ -1,0 +1,22 @@
+numWorkers: "16"
+randomSeed: "1234"
+experimentDirectory: "error-mechanisms-testing-experiments"
+
+image:
+  repositoryBase: registry.datexis.com/nich1834/
+  repositorySuffix: e
+  tag: latest
+  pullPolicy: Always
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 8500m
+    memory: 32Gi
+  requests:
+    cpu: 8500m
+    memory: 32Gi
+
