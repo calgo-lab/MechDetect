@@ -16,12 +16,10 @@ one .npz file.
 
 
 ## Usage
-
 The following guide provides details on how to replicate the results of the MechDetect paper. Note that the final auc_roc scores are cached so the visualizations can be recreated without running the full mech detect algorithm. As this is experiment code, a full standalone MechDetect package is not yet available. We plan to release this if the paper is well recieved by the community.
 
 We describe what the process to obtain the results is before providing step-by-step instructions to replicate them. Essentially, there is a file that trains models to predict the error masks in the task settings: `src/auc_roc_scores/testing.py`. This is run with a bash script: `src/auc_roc_scores/run_all_experiments.sh`. The results are then saved in individual directories where a python script to compile these into a single .npz file is used: `src/auc_roc_scores/make_data_cube.py`. The final cube is saved in `src/auc_roc_scores/data/auc_roc_tensors_dict.npz` which is the file the two notebooks read from. Once this file is created, all plots from the paper can be created using the notebooks `src/auc_roc_analysis.ipynb` and `src/accuracy_analysis.ipynb`. Note that if the results are to be replicated quickly it is recommended to parallelize/distribute the individual jobs of the `src/auc_roc_scores/run_all_experiments.sh` script. Due to the heterogeneity of compute infrastructure, we thought that leaving the results in this form was most applicable to the widest audience. We now proceed with the exact instructions.
 
-1. Unzip/tar the OpenML datasets via `tar -xzvf src/auc_roc_scores/datasets.tar.gz`
-2. Run the generation & aggregation of AUC-ROC scores via `./src/auc_roc_scores/run_all_experiments.sh`
+1. Unzip/tar the OpenML datasets via `tar -xzvf src/auc_roc_scores/datasets.tar.gz src/auc_roc_scores/datasets`.
+2. Run the generation & aggregation of AUC-ROC scores via `./src/auc_roc_scores/run_all_experiments.sh`.
 3. Run notebooks with the uv kernel in `src/auc_roc_analysis.ipynb` and `src/accuracy_analysis.ipynb`.
-
