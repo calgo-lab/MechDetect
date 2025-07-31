@@ -80,8 +80,8 @@ def main():
     model = HistGradientBoostingClassifier(max_iter=200)
     
     # Set up filesystem paths
-    dataset_directory = "/datasets"  # Use this one for cluster
-    results_directory = f"/results/{experiment_name}/{dataset_id}/{error_rate}"  # Use this one for cluster
+    dataset_directory = "./datasets"
+    results_directory = f"./results/{experiment_name}/{dataset_id}/{error_rate}"
     
     os.makedirs(results_directory, exist_ok=True)
     dataset_path = os.path.join(dataset_directory, f"{dataset_id}.csv")
