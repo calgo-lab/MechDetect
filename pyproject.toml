@@ -1,7 +1,7 @@
 [project]
-name = "your_project"
+name = "mechdetect"
 version = "0.1.0"
-description = "Short description of your project."
+description = ""
 authors = [
     { name = "Nicholas Chandler", email = "njchandler2002@gmail.com" },
     { name = "Phillipp Jung", email = "" },
@@ -12,23 +12,14 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 dependencies = [
-    # add your runtime deps here, for example:
     "numpy",
     "pandas",
     "scikit-learn",
     "tab-err",
     "matplotlib",
     "seaborn",
-    "ipykernel"
+    "ipykernel",
 ]
-
-[tool.uv]
-# optional: specify how uv should behave
-# see https://github.com/astral-sh/uv/blob/main/docs/configuration.md
-
-[build-system]
-requires = ["uv"]
-build-backend = "uv.build"
 
 # optional: for testing, linting, etc.
 [project.optional-dependencies]
