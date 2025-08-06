@@ -3,9 +3,9 @@ Code accompanying the MechDetect paper.
 
 An example of MechDetect as seen in the paper.
 
-![Data for MechDetect Example](figures/mechdetect-data.png)
+![Data for MechDetect Example](diagrams/mechdetect-data.png)
 
-![Decision Procedure for MechDetect Example](figures/test-tree.png)
+![Decision Procedure for MechDetect Example](diagrams/test-tree.png)
 
 ## Results Replication
 1. Unzip/tar the OpenML datasets via `tar -xzvf src/auc_roc_scores/datasets.tar.gz src/auc_roc_scores/datasets`.
