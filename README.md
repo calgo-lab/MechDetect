@@ -2,6 +2,7 @@
 Code accompanying the MechDetect paper.
 
 An example of MechDetect as seen in the paper.
+
 ![Data for MechDetect Example](figures/mechdetect-data.png)
 
 ![Decision Procedure for MechDetect Example](figures/test-tree.png)
