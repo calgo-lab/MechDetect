@@ -4,9 +4,9 @@ version = "0.1.0"
 description = ""
 authors = [
     { name = "Nicholas Chandler", email = "njchandler2002@gmail.com" },
-    { name = "Phillipp Jung", email = "" },
-    { name = "Sebastian Jaeger", email = ""},
-    { name = "Felix Biessmann", email = ""}
+    { name = "Philipp Jung", email = "Philipp.Jung@bht-berlin.de" },
+    { name = "Sebastian Jaeger", email = "Sebastian.Jaeger@bht-berlin.de"},
+    { name = "Felix Biessmann", email = "Felix.Biessmann@bht-berlin.de"}
 ]
 readme = "README.md"
 requires-python = ">=3.10"
