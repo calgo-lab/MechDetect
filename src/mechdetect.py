@@ -4,6 +4,7 @@ from catboost import CatBoostClassifier
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import StratifiedKFold
 import scipy.stats as stats
 
 class MechDetector:
@@ -82,6 +83,7 @@ class MechDetector:
         """
         score = make_scorer(roc_auc_score)
         target = mask[column]
+        skf = StratifiedKFold(n_splits=self.cv_folds, shuffle=True, random_state=self.seed)  # Ensure that CV works!
 
         # Identify categorical features
         cat_cols = data.select_dtypes(include=["object", "category"]).columns
@@ -99,13 +101,13 @@ class MechDetector:
 
         # Case 1: Complete task
         case_1_scores = cross_val_score(
-            model, data, y=target, cv=self.cv_folds, scoring=score
+            model, data, y=target, cv=skf, scoring=score
         )
 
         # Case 2: Shuffled target
         case_2_target = target.sample(frac=1, random_state=self.seed)
         case_2_scores = cross_val_score(
-            model, data, y=case_2_target, cv=self.cv_folds, scoring=score
+            model, data, y=case_2_target, cv=skf, scoring=score
         )
 
         # Case 3: Missing column
@@ -126,7 +128,7 @@ class MechDetector:
         )
 
         case_3_scores = cross_val_score(
-            case_3_model, case_3_data, y=target, cv=self.cv_folds, scoring=score
+            case_3_model, case_3_data, y=target, cv=skf, scoring=score
         )
 
         return np.array([case_1_scores, case_2_scores, case_3_scores])
